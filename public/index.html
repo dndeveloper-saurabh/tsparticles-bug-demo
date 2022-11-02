@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon-circle.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="apple-mobile-web-app-title" content="PuStack" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="mobile-web-app-capable" content="yes" />
+
+    <meta name="theme-color" content="#181818" />
+    <meta
+            name="description"
+            content="At PuStack we believe that it is our responsibility to build quality tools and generate flawless content to help students globally."
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="%PUBLIC_URL%/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="%PUBLIC_URL%/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="%PUBLIC_URL%/favicon-16x16.png"
+    />
+
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+    <meta
+      http-equiv="Cache-Control"
+      content="no-cache, no-store, must-revalidate"
+    />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.6.2/plyr.css" />
+
+    <!-- Font Preloading -->
+    <link
+      rel="preload"
+      href="%PUBLIC_URL%/assets/fonts/BeonNeonFont/beon-webfont.ttf"
+      as="font"
+      type="font/truetype"
+      crossorigin
+    />
+
+    <link
+      rel="preload"
+      href="%PUBLIC_URL%/assets/fonts/Digital/digital.ttf"
+      as="font"
+      type="font/truetype"
+      crossorigin
+    />
+    <link rel="preload" as="image" href="%PUBLIC_URL%/assets/logo-white.png" />
+
+    <style>
+      @font-face {
+        font-family: "beonNeon";
+        src: url("/assets/fonts/BeonNeonFont/beon-webfont.ttf");
+        src: local("beonNeon"),
+          url("/assets/fonts/BeonNeonFont/beon-webfont.ttf") format("truetype");
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "digital";
+        src: url("/assets/fonts/Digital/digital.ttf");
+        src: local("digital"),
+          url("/assets/fonts/Digital/digital.ttf") format("truetype");
+        font-style: normal;
+        font-display: swap;
+      }
+
+      .loading__wrapper {
+        position: fixed !important;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: white;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 13000;
+        overflow: hidden;
+      }
+
+      .loading__content {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+      }
+
+      @media screen and (max-width: 500px) {
+        .loading__content {
+          transform: scale(0.65);
+        }
+      }
+
+      .loader__logo {
+        width: 256px;
+        margin-bottom: 1rem;
+      }
+
+      #context-menu, #modal {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 9999;
+        pointer-events: all;
+      }
+
+      #modal {
+        height: 100vh;
+        width: 100vw;
+      }
+
+      #modal:empty {
+        height: unset;
+        width: unset;
+      }
+
+      #context-menu:empty, #modal:empty {
+        pointer-events: none;
+      }
+
+      #loader {
+        background-color: rgba(255, 255, 255, 0.5);
+        border-radius: 50px;
+        display: block;
+        height: 4px;
+        width: 90%;
+        bottom: 0;
+        position: absolute;
+        transform: translateX(0px);
+        margin-left: 1rem;
+        margin-right: 1rem;
+        overflow: hidden;
+      }
+
+      #loader:before {
+        position: absolute;
+        content: "";
+        width: 100%;
+        height: 100%;
+        left: 0;
+        background-color: #891010;
+        border-radius: inherit;
+        animation: loading2 3.5s ease both infinite;
+      }
+
+      @keyframes loading {
+        0% {
+          width: 16px;
+          transform: translateX(0px);
+        }
+
+        100% {
+          width: 90%;
+        }
+      }
+      @keyframes loading2 {
+        0% {
+          left: -100%;
+          width: 100%;
+        }
+        100% {
+          left: 100%;
+          width: 10%;
+        }
+      }
+    </style>
+
+    <script src="https://smtpjs.com/v3/smtp.js">
+    </script>
+  </head>
+
+  <body>
+    <div class="disable-antd" id="root"></div>
+    <div id="context-menu"></div>
+    <div id="modal"></div>
+    <div class="loading__wrapper" data-nosnippet="">
+      <script>
+        Array.prototype.at = function(ind) {
+          if(ind < 0) return this[this.length + ind]
+          return this[ind];
+        }
+      </script>
+      <div class="loading__content fadeIn">
+        <img
+          src="%PUBLIC_URL%/assets/logo.png"
+          alt="Pustack Logo"
+          class="loader__logo"
+        />
+        <span id="loader"></span>
+      </div>
+    </div>
+  </body>
+</html>
